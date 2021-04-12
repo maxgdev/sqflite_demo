@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sqflite_example/batch_test_page.dart';
 import 'package:sqflite_example/deprecated_test_page.dart';
+import './batch_test_page2.dart';
 import 'package:sqflite_example/exception_test_page.dart';
 import 'package:sqflite_example/exp_test_page.dart';
 import 'package:sqflite_example/manual_test_page.dart';
@@ -42,6 +43,7 @@ const String testTypeRoute = '/test/type';
 
 /// Batch test page.
 const String testBatchRoute = '/test/batch';
+const String testBatchRoute2 = '/test/batch2';
 
 /// `todo` example test page.
 const String testTodoRoute = '/test/todo';
@@ -68,6 +70,7 @@ class _MyAppState extends State<MyApp> {
     testTypeRoute: (BuildContext context) => TypeTestPage(),
     testManualRoute: (BuildContext context) => ManualTestPage(),
     testBatchRoute: (BuildContext context) => BatchTestPage(),
+    testBatchRoute2: (BuildContext context) => BatchTestPage2(),
     testExceptionRoute: (BuildContext context) => ExceptionTestPage(),
     testExpRoute: (BuildContext context) => ExpTestPage(),
     testDeprecatedRoute: (BuildContext context) => DeprecatedTestPage(),
@@ -104,8 +107,11 @@ class MyHomePage extends StatefulWidget {
         route: testOpenRoute));
     _items
         .add(MainItem('Type tests', 'Test value types', route: testTypeRoute));
+
     _items.add(MainItem('Batch tests', 'Test batch operations',
         route: testBatchRoute));
+    _items.add(MainItem('Batch tests2', 'Test batch operations2',
+        route: testBatchRoute2));        
     _items.add(
         MainItem('Slow tests', 'Lengthy operations', route: testSlowRoute));
     _items.add(MainItem(

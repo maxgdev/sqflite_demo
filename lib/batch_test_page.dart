@@ -15,8 +15,13 @@ class BatchTestPage extends TestPage {
       var batch = db.batch();
       batch.execute('CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT)');
       batch.rawInsert('INSERT INTO Test (name) VALUES (?)', ['item1']);
+      batch.rawInsert('INSERT INTO Test (name) VALUES (?)', ['item2']);
+      batch.rawInsert('INSERT INTO Test (name) VALUES (?)', ['item3']);
+      batch.insert('Test', {'name': 'item4'});
+      batch.insert('Test', {'name': 'item5'});
+      batch.insert('Test', {'name': 'item6'});
       var results = await batch.commit();
-      expect(results, [null, 1]);
+      expect(results, [null, 3]);
 
       var dbResult = await db.rawQuery('SELECT id, name FROM Test');
       // devPrint('dbResult $dbResult');
@@ -40,6 +45,7 @@ class BatchTestPage extends TestPage {
       ]);
       await db.close();
     });
+    
     test('Batch', () async {
       // await Sqflite.devSetDebugModeOn();
       var path = await initDeleteDb('batch.db');
